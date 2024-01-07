@@ -1,0 +1,6 @@
+venv
+.env
+settings.ini
+TwitchDownloderCLI
+output
+.DS_Store
