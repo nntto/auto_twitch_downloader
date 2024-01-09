@@ -8,6 +8,12 @@ import asyncio
 import subprocess
 
 
+def dir_path():
+    import sys
+    from pathlib import Path
+    p = Path(sys.argv[0])
+    return p.parent
+
 def output_file_path(video: Video, output_dir):
     return f"{output_dir}/{video.user_id}/{video.id}_{video.title}.mp4"
 
@@ -49,7 +55,8 @@ def mkdir_if_not_exists(output_dir, streamer_id):
 
 # 設定ファイルの読み込み
 config = configparser.ConfigParser()
-config.read("settings.ini")
+path = os.path.join(dir_path(), 'settings.ini')
+config.read(path, 'UTF-8')
 
 # 設定値の取得
 streamer_ids = config["Settings"]["StreamerIDs"].split(",")
